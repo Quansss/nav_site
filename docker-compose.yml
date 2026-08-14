@@ -1,0 +1,14 @@
+# 迅鲨云导航站 - Docker Compose 部署
+# 使用：docker compose up -d
+services:
+  nav_site:
+    build: .
+    container_name: nav_site
+    restart: unless-stopped
+    ports:
+      - "8766:8766"
+    environment:
+      - NAV_SECRET=${NAV_SECRET:-nav-site-secret-change-me}
+      - NAV_DB_PATH=/app/data/nav.db
+    volumes:
+      - ./data:/app/data
